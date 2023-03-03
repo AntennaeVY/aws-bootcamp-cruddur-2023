@@ -81,21 +81,23 @@ cors = CORS(
 #     LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
 #     return response
 
-rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
-@app.before_first_request
-def init_rollbar():
-    rollbar.init(
-        rollbar_access_token,
-        'production',
-        root=os.path.dirname(os.path.realpath(__file__)),
-        allow_logging_basic_config=False)
+# # Rollbar
+# rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
+# @app.before_first_request
+# def init_rollbar():
+#     rollbar.init(
+#         rollbar_access_token,
+#         'production',
+#         root=os.path.dirname(os.path.realpath(__file__)),
+#         allow_logging_basic_config=False)
 
-    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+#     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
-@app.route('/rollbar/test')
-def rollbar_test():
-    rollbar.report_message('Hello World!', 'warning')
-    return "Hello World!"
+# # Rollbar
+# @app.route('/rollbar/test')
+# def rollbar_test():
+#     rollbar.report_message('Hello World!', 'warning')
+#     return "Hello World!"
 
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():
