@@ -13,7 +13,7 @@ fi
 
 bin_path="$(realpath .)/bin"
 
-source "$bin_path/db_drop.sh"
-source "$bin_path/db_create.sh"
-source "$bin_path/db_schema_load.sh"
-source "$bin_path/db_seed.sh"
+source "$bin_path/db_drop.sh $db_env" 
+source "$bin_path/db_create.sh $db_env"
+source "$bin_path/db_schema_load.sh $db_env"
+source "$bin_path/db_seed.sh $db_env"
