@@ -6,7 +6,7 @@ LABEL="dropping database..."
 printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
 
 if [ "$1" = "prod" ]; then
-    URL=$CONNECTION_URL_PROD
+    URL=$(sed 's/\/cruddur/postgres/g' <<<"$CONNECTION_URL_PROD")
 else
     URL=$(sed 's/\/cruddur//g' <<<"$CONNECTION_URL_DEV")
 fi
