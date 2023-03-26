@@ -52,7 +52,7 @@ class CreateMessage:
       my_user    = next((item for item in users if item["kind"] == 'sender'), None)
       other_user = next((item for item in users if item["kind"] == 'recv')  , None)
 
-      print("USERS=[my-user]==")
+      print("USERS=[my-user]====")
       print(my_user)
       print("USERS=[other-user]==")
       print(other_user)
