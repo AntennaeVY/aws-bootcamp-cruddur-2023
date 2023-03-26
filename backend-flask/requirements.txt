@@ -16,3 +16,6 @@ rollbar
 
 psycopg[binary]
 psycopg[pool]
+
+boto3
+python-jose
