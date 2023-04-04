@@ -1,4 +1,4 @@
-FROM node:16.18
+FROM 545016258184.dkr.ecr.us-east-1.amazonaws.com/cruddur-node:16.18
 
 ENV PORT=3000
 
