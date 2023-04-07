@@ -2,8 +2,8 @@ import './MessageGroupPage.css';
 import React from "react";
 import { useParams } from 'react-router-dom';
 
-import checkAuth from '../lib/CheckAuth';
-import DesktopNavigation from '../components/DesktopNavigation';
+import {checkAuth, getAccessToken} from '../lib/CheckAuth';
+import DesktopNavigation  from '../components/DesktopNavigation';
 import MessageGroupFeed from '../components/MessageGroupFeed';
 import MessagesFeed from '../components/MessageFeed';
 import MessagesForm from '../components/MessageForm';
@@ -19,11 +19,13 @@ export default function MessageGroupPage() {
   const loadMessageGroupsData = async () => {
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
+      await getAccessToken()
+      const access_token = localStorage.getItem("access_token")
       const res = await fetch(backend_url, {
-        method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`
-        }
+          Authorization: `Bearer ${access_token}`
+        },
+        method: "GET"
       });
       let resJson = await res.json();
       if (res.status === 200) {
@@ -34,16 +36,18 @@ export default function MessageGroupPage() {
     } catch (err) {
       console.log(err);
     }
-  };
+  };  
 
   const loadMessageGroupData = async () => {
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${params.message_group_uuid}`
+      await getAccessToken()
+      const access_token = localStorage.getItem("access_token")
       const res = await fetch(backend_url, {
-        method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`
-        }
+          Authorization: `Bearer ${access_token}`
+        },
+        method: "GET"
       });
       let resJson = await res.json();
       if (res.status === 200) {
@@ -54,9 +58,9 @@ export default function MessageGroupPage() {
     } catch (err) {
       console.log(err);
     }
-  };
+  };  
 
-  React.useEffect(() => {
+  React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
