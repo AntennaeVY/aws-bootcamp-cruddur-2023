@@ -68,7 +68,7 @@ class Db:
         json = cur.fetchone()
         
         if json == None:
-          "{}"
+          return "{}"
         else:
           return json[0]
   # When we want to return an array of json objects
@@ -83,7 +83,7 @@ class Db:
         cur.execute(wrapped_sql,params)
         json = cur.fetchone()
         if json == None:
-          "{}"
+          return "{}"
         else:
           return json[0]
   def query_value(self,sql,params={}):
@@ -96,7 +96,7 @@ class Db:
         print(params)
 
         if json == None:
-          "{}"
+          return "{}"
         else:
           return json[0]
   def query_wrap_object(self,template):
