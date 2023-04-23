@@ -4,7 +4,7 @@ import EditProfileButton from '../components/EditProfileButton';
 import ProfileAvatar from 'components/ProfileAvatar'
 
 export default function ProfileHeading(props) {
-    const backgroundImage = 'url("https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701429855.jpg")';
+    const backgroundImage = `url("http://${REACT_APP_ASSETS_URL}/headings/test.jpg")`;
     const styles = {
         backgroundImage: backgroundImage,
         backgroundSize: 'cover',
